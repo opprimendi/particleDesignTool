@@ -162,6 +162,7 @@ package away3d.loaders.parsers
 			_particleAnimationSet = new ParticleAnimationSet(timeNode.usesDuration, timeNode.usesLooping, timeNode.usesDelay);
 			var len:int = _nodeParsers.length;
 			var handlers:Vector.<SetterBase> = new Vector.<SetterBase>();
+			
 			if (_globalValues)
 			{
 				for each (var valueParser:ValueSubParserBase in _globalValues)
@@ -169,21 +170,38 @@ package away3d.loaders.parsers
 					handlers.push(valueParser.setter);
 				}
 			}
+			
 			for (var i:int; i < _nodeParsers.length; i++)
 			{
 				if (i != 0)
 					_particleAnimationSet.addAnimation(_nodeParsers[i].particleAnimationNode);
+					
 				var setters:Vector.<SetterBase> = _nodeParsers[i].setters;
 				for each (var setter:SetterBase in setters)
 				{
 					handlers.push(setter);
 				}
 			}
+			
 			var particleInitializer:ParticleInitializer = new ParticleInitializer(handlers);
 			_particleAnimationSet.initParticleFunc = particleInitializer.initHandler;
-			finalizeAsset(_particleAnimationSet);
+			
 			//animator:
 			_particleAnimator = new ParticleAnimator(_particleAnimationSet);
+			_particleAnimator._maxStartTime = timeNode._startTimeValue.setter.generateMaxValue();
+			
+			if (timeNode.usesDuration)
+			{
+				_particleAnimator._duration = timeNode._durationValue.setter.generateOneValue();
+				_particleAnimator._absoluteAnimationTime = _particleAnimator._duration + _particleAnimator._maxStartTime;
+			}
+			else
+			{
+				_particleAnimator._duration  = 0;
+				_particleAnimator._absoluteAnimationTime = 0;
+			}
+			
+			_particleAnimator._isUsesLoop = timeNode.usesLooping;
 			
 			//mesh:
 			_particleMesh = new Mesh(_particlegeometryParser.particleGeometry, _particleMaterialParser.material);

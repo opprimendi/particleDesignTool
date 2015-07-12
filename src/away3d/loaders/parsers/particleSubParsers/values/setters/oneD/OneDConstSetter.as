@@ -24,6 +24,11 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.oneD
 			return _value;
 		}
 		
+		override public function generateMaxValue():* 
+		{
+			return _value;
+		}
+		
 	}
 
 }

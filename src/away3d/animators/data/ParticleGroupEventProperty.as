@@ -3,6 +3,8 @@ package away3d.animators.data
 	
 	public class ParticleGroupEventProperty
 	{
+		public static const ANIMATION_GROUP_ENDED:String = "AnimationGroupEnded";
+		
 		private var _occurTime:Number;
 		private var _customName:String;
 		

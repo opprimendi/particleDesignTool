@@ -6,10 +6,21 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.oneD
 	public class OneDCurveSetter extends SetterBase
 	{
 		protected var _anchors:Vector.<Anchor>;
+		private var generateOneValueStrategies:Object;
 		
 		public function OneDCurveSetter(propName:String, anchorDatas:Array)
 		{
 			super(propName);
+			
+			initilize(anchorDatas);
+		}
+		
+		private function initilize(anchorDatas:Array):void 
+		{
+			generateOneValueStrategies = { };
+			generateOneValueStrategies[Anchor.LINEAR] = getLinearValue;
+			generateOneValueStrategies[Anchor.CONST] = getConstValue;
+			
 			var len:int = anchorDatas.length;
 			_anchors = new Vector.<Anchor>(len, true);
 			for (var i:int; i < len; i++)
@@ -23,26 +34,42 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.oneD
 			prop[_propName] = generateOneValue(prop.index, prop.total);
 		}
 		
+		override public function generateMaxValue():* 
+		{
+			return _anchors[_anchors.length - 1].y;
+		}
+		
 		override public function generateOneValue(index:int = 0, total:int = 1):*
 		{
 			//todo:optimise
 			var percent:Number = index / total;
-			var i:int;
-			for (; i < _anchors.length - 1; i++)
+			var i:int = 0;
+			var l:int = _anchors.length - 1;
+			var params:Array;
+			var strategie:Function;
+			
+			for (; i < l ; i++)
 			{
 				if (_anchors[i + 1].x > percent)
 				{
-					switch (_anchors[i].type)
-					{
-						case Anchor.LINEAR:
-							return _anchors[i].y + (percent - _anchors[i].x) / (_anchors[i + 1].x - _anchors[i].x) * (_anchors[i + 1].y - _anchors[i].y);
-							break;
-						case Anchor.CONST:
-							return _anchors[i].y;
-							break;
-					}
+					strategie = generateOneValueStrategies[_anchors[i].type];
+					
+					params = [i, percent];
+					
+					return strategie.apply(null, params);
 				}
 			}
+			
+			return _anchors[i].y;
+		}
+		
+		private function getLinearValue(i:int, percent:Number):*
+		{
+			return _anchors[i].y + (percent - _anchors[i].x) / (_anchors[i + 1].x - _anchors[i].x) * (_anchors[i + 1].y - _anchors[i].y);
+		}
+		
+		private function getConstValue(i:int, percent:Number):*
+		{
 			return _anchors[i].y;
 		}
 	}

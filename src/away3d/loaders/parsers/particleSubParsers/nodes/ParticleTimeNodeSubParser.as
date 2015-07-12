@@ -10,9 +10,10 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 		public var usesDuration:Boolean;
 		public var usesLooping:Boolean;
 		public var usesDelay:Boolean;
-		private var _startTimeValue:ValueSubParserBase;
-		private var _durationValue:ValueSubParserBase;
-		private var _delayValue:ValueSubParserBase;
+		
+		public var _startTimeValue:ValueSubParserBase;
+		public var _durationValue:ValueSubParserBase;
+		public var _delayValue:ValueSubParserBase;
 		
 		public function ParticleTimeNodeSubParser()
 		{

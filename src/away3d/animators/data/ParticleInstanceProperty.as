@@ -23,6 +23,11 @@ package away3d.animators.data
 			return _timeOffset;
 		}
 		
+		public function get playSpeed():Number 
+		{
+			return _playSpeed;
+		}
+		
 		
 		public function ParticleInstanceProperty(position:Vector3D, rotation:Vector3D, scale:Vector3D, timeOffset:Number, playSpeed:Number)
 		{

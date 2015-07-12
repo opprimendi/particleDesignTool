@@ -2,6 +2,7 @@ package away3d.loaders.parsers
 {
 	import away3d.animators.data.ParticleGroupEventProperty;
 	import away3d.animators.data.ParticleInstanceProperty;
+	import away3d.animators.ParticleAnimator;
 	import away3d.arcane;
 	import away3d.entities.Mesh;
 	import away3d.entities.ParticleGroup;
@@ -125,15 +126,45 @@ package away3d.loaders.parsers
 			var particleMeshes:Vector.<Mesh> = new Vector.<Mesh>;
 			var instanceProperties:Vector.<ParticleInstanceProperty> = new Vector.<ParticleInstanceProperty>(len, true);
 			
+			var isLoop:Boolean = false;
+			var maxAnimationTime:Number = 0
+			
 			for (var index:int; index < _animationParsers.length; index++)
 			{
 				var animationParser:ParticleAnimationParser = _animationParsers[index];
+				
 				if (_instancePropertyParsers[index])
 				{
 					instanceProperties[index] = ParticleInstanceProperty(_instancePropertyParsers[index].setter.generateOneValue());
 				}
+				
 				particleMeshes.push(animationParser.particleMesh);
+				
+				var animator:ParticleAnimator = animationParser.particleMesh.animator as ParticleAnimator;
+				
+				if(animator.isUsesLoop)
+					isLoop = true;
+					
+				var currentInstanceProp:ParticleInstanceProperty = instanceProperties[index]	
+				var playSpeed:Number = 1;
+				
+				if (currentInstanceProp)
+					playSpeed = currentInstanceProp.playSpeed;
+					
+				var currentAbsoluteTime:Number = animator.absoluteAnimationTime / playSpeed;
+				if (maxAnimationTime < currentAbsoluteTime)
+					maxAnimationTime = currentAbsoluteTime
 			}
+			
+			if (!isLoop)
+			{
+				if (!_particleEvents)
+					_particleEvents = new Vector.<ParticleGroupEventProperty>;
+				
+				var animationEndEvent:ParticleGroupEventProperty = new ParticleGroupEventProperty(maxAnimationTime, ParticleGroupEventProperty.ANIMATION_GROUP_ENDED);
+				_particleEvents.push(animationEndEvent);
+			}
+			
 			_particleGroup = new ParticleGroup(particleMeshes, instanceProperties, _customParameters, _particleEvents);
 		}
 		

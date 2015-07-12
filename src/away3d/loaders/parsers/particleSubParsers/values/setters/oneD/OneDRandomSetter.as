@@ -28,6 +28,11 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.oneD
 			return Math.random() * _delta + _min;
 		}
 		
+		override public function generateMaxValue():* 
+		{
+			return _max;
+		}
+		
 	}
 
 }

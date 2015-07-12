@@ -27,6 +27,11 @@ package away3d.loaders.parsers.particleSubParsers.values.setters
 			throw(new AbstractMethodError());
 		}
 		
+		public function generateMaxValue():*
+		{
+			throw(new AbstractMethodError());
+		}
+		
 		public function generateOneValue(index:int = 0, total:int = 1):*
 		{
 			throw(new AbstractMethodError());
