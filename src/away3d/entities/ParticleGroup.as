@@ -30,9 +30,6 @@ package away3d.entities
 		
 		public function ParticleGroup(particleMeshes:Vector.<Mesh>, instanceProperties:Vector.<ParticleInstanceProperty>, customParameters:Object = null, eventList:Vector.<ParticleGroupEventProperty> = null)
 		{
-			_followParticleContainer = new FollowParticleContainer();
-			addChild(_followParticleContainer);
-			
 			if (customParameters)
 			{
 				//clone the customParameters
@@ -53,11 +50,17 @@ package away3d.entities
 			for (var index:int; index < particleMeshes.length; index++)
 			{
 				var mesh:Mesh = particleMeshes[index];
+				
 				var instanceProperty:ParticleInstanceProperty = instanceProperties[index];
+				
 				if (instanceProperty)
 					instanceProperty.apply(mesh);
+					
 				if (isFollowParticle(mesh))
 				{
+					if (_followParticleContainer == null)
+						initFollowParticleContainer();
+						
 					_followParticleContainer.addFollowParticle(mesh);
 				}
 				else
@@ -65,6 +68,12 @@ package away3d.entities
 					addChild(mesh);
 				}
 			}
+		}
+		
+		private function initFollowParticleContainer():void
+		{
+			_followParticleContainer = new FollowParticleContainer();
+			addChild(_followParticleContainer);
 		}
 		
 		override public function get zOffset():int 
@@ -122,6 +131,7 @@ package away3d.entities
 					return true;
 				}
 			}
+			
 			return false;
 		}
 		

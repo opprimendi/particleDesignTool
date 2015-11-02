@@ -7,6 +7,7 @@ package away3d.events
 	public class ParticleGroupEvent extends Event
 	{
 		public static const OCCUR:String = "occur";
+		public static const END:String = "end";
 		
 		private var _eventProperty:ParticleGroupEventProperty;
 		
