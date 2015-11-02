@@ -40,12 +40,19 @@ package away3d.animators.data
 		
 		public function apply(_particleMesh:Mesh):void
 		{
-			_particleMesh.position = _position.clone();
-			_particleMesh.eulers = _rotation.clone();
+			_particleMesh.x = _position.x;
+			_particleMesh.y = _position.y;
+			_particleMesh.z = _position.z;
+			
+			_particleMesh.rotationX = _rotation.x;
+			_particleMesh.rotationY = _rotation.y;
+			_particleMesh.rotationZ = _rotation.z;
+			
 			_particleMesh.scaleX = _scale.x;
 			_particleMesh.scaleY = _scale.y;
 			_particleMesh.scaleZ = _scale.z;
-			ParticleAnimator(_particleMesh.animator).playbackSpeed = _playSpeed;
+			
+			(_particleMesh.animator as ParticleAnimator).playbackSpeed = _playSpeed;
 		}
 	}
 }
