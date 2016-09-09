@@ -44,7 +44,7 @@ package away3d.loaders.parsers.particleSubParsers.values.matrix
 					var valueParser:ValueSubParserBase = new valueCls(transformData.type);
 					addSubParser(valueParser);
 					valueParser.parseAsync(subData);
-					_transforms.push(valueParser);
+					_transforms[_transforms.length] = valueParser;
 				}
 			}
 			
@@ -63,12 +63,12 @@ package away3d.loaders.parsers.particleSubParsers.values.matrix
 			var transformSetters:Vector.<SetterBase> = new Vector.<SetterBase>();
 			for (var i:int; i < _transforms.length; i++)
 			{
-				transformSetters.push(_transforms[i].setter);
+				transformSetters[transformSetters.length] = _transforms[i].setter;
 			}
 			_setter = new Matrix3DCompositeSetter(_propName, transformSetters);
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.Matrix3DCompositeValueSubParser;
 		}

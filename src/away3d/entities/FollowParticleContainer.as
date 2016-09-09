@@ -41,11 +41,11 @@ package away3d.entities
 			addChild(mesh);
 			if ((animator.animationSet.getAnimation("ParticleFollowLocalDynamic") as ParticleFollowNode)._usesPosition)
 			{
-				_updateBoundMeshes.push(mesh);
+				_updateBoundMeshes[_updateBoundMeshes.length] = mesh;
 			}
 			else
 			{
-				_updatePositionMeshes.push(mesh);
+				_updatePositionMeshes[_updatePositionMeshes.length] = mesh;
 			}
 		}
 		

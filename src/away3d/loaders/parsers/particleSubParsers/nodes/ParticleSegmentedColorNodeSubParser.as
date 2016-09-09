@@ -8,6 +8,7 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 	import away3d.loaders.parsers.particleSubParsers.values.color.CompositeColorValueSubParser;
 	import away3d.loaders.parsers.particleSubParsers.values.color.ConstColorValueSubParser;
 	import away3d.loaders.parsers.particleSubParsers.values.oneD.OneDConstValueSubParser;
+	import flash.geom.ColorTransform;
 	
 	public class ParticleSegmentedColorNodeSubParser extends ParticleNodeSubParserBase
 	{
@@ -55,7 +56,7 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 				{
 					var colorValue:ConstColorValueSubParser = new ConstColorValueSubParser(null);
 					addSubParser(colorValue);
-					_segmentPoints.push({life: pointsData[i].life, color: colorValue});
+					_segmentPoints[_segmentPoints.length] = {life: pointsData[i].life, color: colorValue};
 					colorValue.parseAsync(pointsData[i].color.data);
 				}
 				_segmentPoints.sortOn("life", Array.NUMERIC | Array.CASEINSENSITIVE);
@@ -80,15 +81,16 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 		{
 			var segmentPoints:Vector.<ColorSegmentPoint> = new Vector.<ColorSegmentPoint>;
 			var len:int = _segmentPoints.length;
+			var len2:int = segmentPoints.length;
 			var i:int;
 			for (; i < len; i++)
 			{
-				segmentPoints.push(new ColorSegmentPoint(_segmentPoints[i].life, _segmentPoints[i].color.setter.generateOneValue()));
+				segmentPoints[len2++] = new ColorSegmentPoint(_segmentPoints[i].life, _segmentPoints[i].color.setter.generateOneValue() as ColorTransform);
 			}
-			_particleAnimationNode = new ParticleSegmentedColorNode(_usesMultiplier, _usesOffset, len, _startColorValue.setter.generateOneValue(), _endColorValue.setter.generateOneValue(), segmentPoints);
+			_particleAnimationNode = new ParticleSegmentedColorNode(_usesMultiplier, _usesOffset, len, _startColorValue.setter.generateOneValue() as ColorTransform, _endColorValue.setter.generateOneValue() as ColorTransform, segmentPoints);
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleSegmentedColorNodeSubParser;
 		}

@@ -66,17 +66,17 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 				_total = int.MAX_VALUE;
 			if (_durationValue.valueType == ValueSubParserBase.CONST_VALUE)
 			{
-				var value:Vector3D = _durationValue.setter.generateOneValue();
+				var value:Vector3D = _durationValue.setter.generateOneValue() as Vector3D;
 				_particleAnimationNode = new ParticleSpriteSheetNode(ParticlePropertiesMode.GLOBAL, _usesCycle, _usesPhase, _numColumns, _numRows, value.x, value.y, _total);
 			}
 			else
 			{
 				_particleAnimationNode = new ParticleSpriteSheetNode(ParticlePropertiesMode.LOCAL_STATIC, _usesCycle, _usesPhase, _numColumns, _numRows, 1, 0, _total);
-				_setters.push(_durationValue.setter);
+				_setters[_setters.length] = _durationValue.setter;
 			}
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleSpriteSheetNodeSubParser;
 		}

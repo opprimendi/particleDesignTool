@@ -47,7 +47,7 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 				{
 					var scaleValue:ThreeDConstValueSubParser = new ThreeDConstValueSubParser(null);
 					addSubParser(scaleValue);
-					_segmentPoints.push({life: pointsData[i].life, scale: scaleValue});
+					_segmentPoints[_segmentPoints.length] = {life: pointsData[i].life, scale: scaleValue};
 					scaleValue.parseAsync(pointsData[i].scale.data);
 				}
 				_segmentPoints.sortOn("life", Array.NUMERIC | Array.CASEINSENSITIVE);
@@ -75,14 +75,14 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 			var i:int;
 			for (; i < len; i++)
 			{
-				var scale:Vector3D = _segmentPoints[i].scale.setter.generateOneValue();
+				var scale:Vector3D = _segmentPoints[i].scale.setter.generateOneValue() as Vector3D;
 				scale.w = _segmentPoints[i].life;
-				segmentPoints.push(scale);
+				segmentPoints[segmentPoints.length] = scale;
 			}
-			_particleAnimationNode = new ParticleSegmentedScaleNode(len, _startScaleValue.setter.generateOneValue(), _endScaleValue.setter.generateOneValue(), segmentPoints);
+			_particleAnimationNode = new ParticleSegmentedScaleNode(len, _startScaleValue.setter.generateOneValue() as Vector3D, _endScaleValue.setter.generateOneValue() as Vector3D, segmentPoints);
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleSegmentedScaleNodeSubParser;
 		}

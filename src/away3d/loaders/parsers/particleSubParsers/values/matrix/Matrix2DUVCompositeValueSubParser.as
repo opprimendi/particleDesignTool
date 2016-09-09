@@ -53,7 +53,7 @@ package away3d.loaders.parsers.particleSubParsers.values.matrix
 			_setter = new Matrix2DUVCompositeSetter(_propName, _numColumns, _numRows, _selectedValue.setter);
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.Matrix2DUVCompositeValueSubParser;
 		}

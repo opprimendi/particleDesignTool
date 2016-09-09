@@ -15,7 +15,7 @@ package away3d.loaders.parsers.particleSubParsers.geometries
 			super();
 		}
 		
-		override public function parseAsync(data:*, frameLimit:Number = 30):void
+		override public function parseAsync(data:Object, frameLimit:Number = 30):void
 		{
 			super.parseAsync(data, frameLimit);
 			_numParticles = _data.num;

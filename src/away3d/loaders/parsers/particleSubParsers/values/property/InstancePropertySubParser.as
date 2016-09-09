@@ -76,7 +76,7 @@ package away3d.loaders.parsers.particleSubParsers.values.property
 			_setter = new InstancePropertySubSetter(_propName, positionSetter, rotationSetter, scaleSetter, timeOffsetSetter, playSpeedSetter);
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.InstancePropertySubParser;
 		}

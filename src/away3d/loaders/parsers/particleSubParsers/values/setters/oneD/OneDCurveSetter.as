@@ -34,12 +34,12 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.oneD
 			prop[_propName] = generateOneValue(prop.index, prop.total);
 		}
 		
-		override public function generateMaxValue():* 
+		override public function generateMaxValue():Object 
 		{
 			return _anchors[_anchors.length - 1].y;
 		}
 		
-		override public function generateOneValue(index:int = 0, total:int = 1):*
+		override public function generateOneValue(index:int = 0, total:int = 1):Object
 		{
 			//todo:optimise
 			var percent:Number = index / total;
@@ -63,12 +63,12 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.oneD
 			return _anchors[i].y;
 		}
 		
-		private function getLinearValue(i:int, percent:Number):*
+		private function getLinearValue(i:int, percent:Number):Object
 		{
 			return _anchors[i].y + (percent - _anchors[i].x) / (_anchors[i + 1].x - _anchors[i].x) * (_anchors[i + 1].y - _anchors[i].y);
 		}
 		
-		private function getConstValue(i:int, percent:Number):*
+		private function getConstValue(i:int, percent:Number):Object
 		{
 			return _anchors[i].y;
 		}

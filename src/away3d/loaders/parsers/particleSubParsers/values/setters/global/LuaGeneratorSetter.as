@@ -31,7 +31,7 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.global
 			Lua.lua_setglobal(_luaState, "__main");
 		}
 		
-		private function onError(e:*):void
+		private function onError(e:Object):void
 		{
 			trace(e);
 			Lua.lua_close(_luaState);

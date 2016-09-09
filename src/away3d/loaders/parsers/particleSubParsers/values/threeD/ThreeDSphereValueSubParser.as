@@ -12,13 +12,13 @@ package away3d.loaders.parsers.particleSubParsers.values.threeD
 			super(propName, VARIABLE_VALUE);
 		}
 		
-		override public function parseAsync(data:*, frameLimit:Number = 30):void
+		override public function parseAsync(data:Object, frameLimit:Number = 30):void
 		{
 			super.parseAsync(data, frameLimit);
 			_setter = new ThreeDSphereSetter(_propName, _data.innerRadius, _data.outerRadius, _data.centerX, _data.centerY, _data.centerZ);
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ThreeDSphereValueSubParser;
 		}

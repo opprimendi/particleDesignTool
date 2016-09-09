@@ -27,7 +27,7 @@ package away3d.animators
 			{
 				var mesh:Mesh = particleAnimationMeshes[index];
 				var animator:ParticleAnimator = mesh.animator as ParticleAnimator;
-				animators.push(animator);
+				animators[animators.length] = animator;
 				animator.autoUpdate = false;
 				if (instanceProperties[index])
 					animatorTimeOffset[index] = instanceProperties[index].timeOffset * 1000;

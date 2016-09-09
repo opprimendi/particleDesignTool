@@ -45,7 +45,7 @@ package away3d.loaders.parsers
 			return extension == "pam";
 		}
 		
-		public static function supportsData(data:*):Boolean
+		public static function supportsData(data:Object):Boolean
 		{
 			return false;
 		}
@@ -91,7 +91,7 @@ package away3d.loaders.parsers
 					var nodeParser:ParticleNodeSubParserBase = new parserCls;
 					addSubParser(nodeParser);
 					nodeParser.parseAsync(subData);
-					_nodeParsers.push(nodeParser);
+					_nodeParsers[_nodeParsers.length] = nodeParser;
 				}
 				
 				var globalValuesDatas:Array = _data.globalValues;
@@ -110,7 +110,7 @@ package away3d.loaders.parsers
 						var valueParser:ValueSubParserBase = new parserCls(null);
 						addSubParser(valueParser);
 						valueParser.parseAsync(subData);
-						_globalValues.push(valueParser);
+						_globalValues[_globalValues.length] = valueParser;
 					}
 				}
 				
@@ -167,7 +167,7 @@ package away3d.loaders.parsers
 			{
 				for each (var valueParser:ValueSubParserBase in _globalValues)
 				{
-					handlers.push(valueParser.setter);
+					handlers[handlers.length] = valueParser.setter;
 				}
 			}
 			
@@ -179,7 +179,7 @@ package away3d.loaders.parsers
 				var setters:Vector.<SetterBase> = _nodeParsers[i].setters;
 				for each (var setter:SetterBase in setters)
 				{
-					handlers.push(setter);
+					handlers[handlers.length] = setter;
 				}
 			}
 			
@@ -188,11 +188,11 @@ package away3d.loaders.parsers
 			
 			//animator:
 			_particleAnimator = new ParticleAnimator(_particleAnimationSet);
-			_particleAnimator._maxStartTime = timeNode._startTimeValue.setter.generateMaxValue();
+			_particleAnimator._maxStartTime = timeNode._startTimeValue.setter.generateMaxValue() as Number;
 			
 			if (timeNode.usesDuration)
 			{
-				_particleAnimator._duration = timeNode._durationValue.setter.generateOneValue();
+				_particleAnimator._duration = timeNode._durationValue.setter.generateOneValue() as Number;
 				_particleAnimator._absoluteAnimationTime = _particleAnimator._duration + _particleAnimator._maxStartTime;
 			}
 			else

@@ -28,13 +28,13 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.matrix
 			prop[_propName] = generateOneValue(prop.index, prop.total);
 		}
 		
-		override public function generateOneValue(index:int = 0, total:int = 1):*
+		override public function generateOneValue(index:int = 0, total:int = 1):Object
 		{
 			var matrix3D:Matrix3D = new Matrix3D;
 			var value:Vector3D;
 			for each (var setter:SetterBase in _transforms)
 			{
-				value = setter.generateOneValue(index, total);
+				value = setter.generateOneValue(index, total) as Vector3D;
 				switch (int(setter.propName))
 				{
 					case SCALE:

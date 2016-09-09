@@ -20,7 +20,7 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.color
 			prop[_propName] = _color;
 		}
 		
-		override public function generateOneValue(index:int = 0, total:int = 1):*
+		override public function generateOneValue(index:int = 0, total:int = 1):Object
 		{
 			return _color;
 		}

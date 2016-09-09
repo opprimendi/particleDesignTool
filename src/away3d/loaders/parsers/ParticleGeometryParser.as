@@ -24,7 +24,7 @@ package away3d.loaders.parsers
 			return extension == "pag";
 		}
 		
-		public static function supportsData(data:*):Boolean
+		public static function supportsData(data:Object):Boolean
 		{
 			return false;
 		}
@@ -39,7 +39,7 @@ package away3d.loaders.parsers
 			if (_isFirstParsing)
 			{
 				var assemblerData:Object = _data.assembler.data;
-				var assemblerId:* = _data.assembler.id;
+				var assemblerId:Object = _data.assembler.id;
 				var parserCls:Class = MatchingTool.getMatchedClass(assemblerId, AllSubParsers.ALL_GEOMETRIES);
 				
 				if (!parserCls)

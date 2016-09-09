@@ -15,13 +15,13 @@ package away3d.loaders.parsers.particleSubParsers.values.oneD
 			super(propName, VARIABLE_VALUE);
 		}
 		
-		override public function parseAsync(data:*, frameLimit:Number = 30):void
+		override public function parseAsync(data:Object, frameLimit:Number = 30):void
 		{
 			super.parseAsync(data, frameLimit);
 			_setter = new OneDRandomSetter(_propName, _data.min, _data.max);
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.OneDRandomVauleSubParser;
 		}

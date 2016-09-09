@@ -6,6 +6,7 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 	import away3d.loaders.parsers.particleSubParsers.values.ValueSubParserBase;
 	import away3d.loaders.parsers.particleSubParsers.values.color.CompositeColorValueSubParser;
 	import away3d.loaders.parsers.particleSubParsers.values.oneD.OneDConstValueSubParser;
+	import flash.geom.ColorTransform;
 	
 	public class ParticleColorNodeSubParser extends ParticleNodeSubParserBase
 	{
@@ -86,24 +87,24 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 			var cyclePhase:Number = 0;
 			if (_usesCycle)
 			{
-				cycleDuration = _cycleDurationValue.setter.generateOneValue();
+				cycleDuration = _cycleDurationValue.setter.generateOneValue() as Number;
 				if (_usesPhase)
-					cyclePhase = _cyclePhaseValue.setter.generateOneValue();
+					cyclePhase = _cyclePhaseValue.setter.generateOneValue() as Number;
 			}
 			
 			if (_startColorValue.valueType == ValueSubParserBase.CONST_VALUE && _endColorValue.valueType == ValueSubParserBase.CONST_VALUE)
 			{
-				_particleAnimationNode = new ParticleColorNode(ParticlePropertiesMode.GLOBAL, _startColorValue.usesMultiplier, _startColorValue.usesOffset, _usesCycle, _usesPhase, _startColorValue.setter.generateOneValue(), _endColorValue.setter.generateOneValue(), cycleDuration, cyclePhase);
+				_particleAnimationNode = new ParticleColorNode(ParticlePropertiesMode.GLOBAL, _startColorValue.usesMultiplier, _startColorValue.usesOffset, _usesCycle, _usesPhase, _startColorValue.setter.generateOneValue() as ColorTransform, _endColorValue.setter.generateOneValue() as ColorTransform, cycleDuration, cyclePhase);
 			}
 			else
 			{
 				_particleAnimationNode = new ParticleColorNode(ParticlePropertiesMode.LOCAL_STATIC, _startColorValue.usesMultiplier, _startColorValue.usesOffset, _usesCycle, _usesPhase, null, null, cycleDuration, cyclePhase);
-				_setters.push(_startColorValue.setter);
-				_setters.push(_endColorValue.setter);
+				_setters[_setters.length] = _startColorValue.setter;
+				_setters[_setters.length] = _endColorValue.setter;
 			}
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleColorNodeSubParser;
 		}

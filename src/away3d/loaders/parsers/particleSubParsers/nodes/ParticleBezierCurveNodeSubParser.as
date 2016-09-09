@@ -6,6 +6,7 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 	import away3d.loaders.parsers.particleSubParsers.AllSubParsers;
 	import away3d.loaders.parsers.particleSubParsers.utils.MatchingTool;
 	import away3d.loaders.parsers.particleSubParsers.values.ValueSubParserBase;
+	import flash.geom.Vector3D;
 	
 	public class ParticleBezierCurveNodeSubParser extends ParticleNodeSubParserBase
 	{
@@ -59,17 +60,17 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 		{
 			if (_controlValue.valueType == ValueSubParserBase.CONST_VALUE && _endValue.valueType == ValueSubParserBase.CONST_VALUE)
 			{
-				_particleAnimationNode = new ParticleBezierCurveNode(ParticlePropertiesMode.GLOBAL, _controlValue.setter.generateOneValue(), _endValue.setter.generateOneValue());
+				_particleAnimationNode = new ParticleBezierCurveNode(ParticlePropertiesMode.GLOBAL, _controlValue.setter.generateOneValue() as Vector3D, _endValue.setter.generateOneValue() as Vector3D);
 			}
 			else
 			{
 				_particleAnimationNode = new ParticleBezierCurveNode(ParticlePropertiesMode.LOCAL_STATIC);
-				_setters.push(_controlValue.setter);
-				_setters.push(_endValue.setter);
+				_setters[_setters.length] = _controlValue.setter;
+				_setters[_setters.length] = _endValue.setter;
 			}
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleBezierCurveNodeSubParser;
 		}

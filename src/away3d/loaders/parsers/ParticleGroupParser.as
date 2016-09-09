@@ -65,7 +65,7 @@ package away3d.loaders.parsers
 					_particleEvents = new Vector.<ParticleGroupEventProperty>;
 					for each (var event:Object in particleEventsData)
 					{
-						_particleEvents.push(new ParticleGroupEventProperty(event.occurTime, event.name));
+						_particleEvents[_particleEvents.length] = new ParticleGroupEventProperty(event.occurTime, event.name);
 					}
 				}
 				
@@ -138,7 +138,7 @@ package away3d.loaders.parsers
 					instanceProperties[index] = ParticleInstanceProperty(_instancePropertyParsers[index].setter.generateOneValue());
 				}
 				
-				particleMeshes.push(animationParser.particleMesh);
+				particleMeshes[particleMeshes.length] = animationParser.particleMesh;
 				
 				var animator:ParticleAnimator = animationParser.particleMesh.animator as ParticleAnimator;
 				
@@ -162,7 +162,7 @@ package away3d.loaders.parsers
 					_particleEvents = new Vector.<ParticleGroupEventProperty>;
 				
 				var animationEndEvent:ParticleGroupEventProperty = new ParticleGroupEventProperty(maxAnimationTime, ParticleGroupEventProperty.ANIMATION_GROUP_ENDED);
-				_particleEvents.push(animationEndEvent);
+				_particleEvents[_particleEvents.length] = animationEndEvent;
 			}
 			
 			_particleGroup = new ParticleGroup(particleMeshes, instanceProperties, _customParameters, _particleEvents);

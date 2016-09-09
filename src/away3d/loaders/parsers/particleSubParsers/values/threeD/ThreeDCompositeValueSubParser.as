@@ -86,7 +86,7 @@ package away3d.loaders.parsers.particleSubParsers.values.threeD
 			_setter = new ThreeDCompositeSetter(_propName, _valueX.setter, _valueY.setter, _valueZ.setter, _isometric);
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ThreeDCompositeValueSubParser;
 		}

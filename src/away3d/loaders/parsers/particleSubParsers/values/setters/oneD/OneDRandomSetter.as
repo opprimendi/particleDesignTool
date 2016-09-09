@@ -23,12 +23,12 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.oneD
 			prop[_propName] = Math.random() * _delta + _min;
 		}
 		
-		override public function generateOneValue(index:int=0, total:int=1):*
+		override public function generateOneValue(index:int=0, total:int=1):Object
 		{
 			return Math.random() * _delta + _min;
 		}
 		
-		override public function generateMaxValue():* 
+		override public function generateMaxValue():Object 
 		{
 			return _max;
 		}

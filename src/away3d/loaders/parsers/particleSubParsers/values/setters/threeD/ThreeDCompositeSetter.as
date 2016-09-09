@@ -26,11 +26,11 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.threeD
 			prop[_propName] = generateOneValue(prop.index, prop.total);
 		}
 		
-		override public function generateOneValue(index:int = 0, total:int = 1):*
+		override public function generateOneValue(index:int = 0, total:int = 1):Object
 		{
-			var x:Number = _setterX.generateOneValue(index, total);
-			var y:Number = _isometric ? x : _setterY.generateOneValue(index, total);
-			var z:Number = _isometric ? x : _setterZ.generateOneValue(index, total);
+			var x:Number = _setterX.generateOneValue(index, total) as Number;
+			var y:Number = _isometric ? x : _setterY.generateOneValue(index, total) as Number;
+			var z:Number = _isometric ? x : _setterZ.generateOneValue(index, total) as Number;
 			return new Vector3D(x, y, z);
 		}
 		

@@ -34,10 +34,10 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.fourD
 			prop[_propName] = generateOneValue(prop.index, prop.total);
 		}
 		
-		override public function generateOneValue(index:int = 0, total:int = 1):*
+		override public function generateOneValue(index:int = 0, total:int = 1):Object
 		{
-			var vector3D:Vector3D = _setter3D.generateOneValue(index, total);
-			vector3D.w = _setterW.generateOneValue(index, total);
+			var vector3D:Vector3D = _setter3D.generateOneValue(index, total) as Vector3D;
+			vector3D.w = _setterW.generateOneValue(index, total) as Number;
 			return vector3D;
 		}
 	}

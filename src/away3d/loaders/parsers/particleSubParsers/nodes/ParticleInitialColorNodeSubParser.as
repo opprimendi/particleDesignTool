@@ -5,6 +5,7 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 	import away3d.loaders.parsers.particleSubParsers.AllIdentifiers;
 	import away3d.loaders.parsers.particleSubParsers.values.ValueSubParserBase;
 	import away3d.loaders.parsers.particleSubParsers.values.color.CompositeColorValueSubParser;
+	import flash.geom.ColorTransform;
 	
 	public class ParticleInitialColorNodeSubParser extends ParticleNodeSubParserBase
 	{
@@ -48,16 +49,16 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 			
 			if (_colorValue.valueType == ValueSubParserBase.CONST_VALUE)
 			{
-				_particleAnimationNode = new ParticleInitialColorNode(ParticlePropertiesMode.GLOBAL, _colorValue.usesMultiplier, _colorValue.usesOffset, _colorValue.setter.generateOneValue());
+				_particleAnimationNode = new ParticleInitialColorNode(ParticlePropertiesMode.GLOBAL, _colorValue.usesMultiplier, _colorValue.usesOffset, _colorValue.setter.generateOneValue() as ColorTransform);
 			}
 			else
 			{
 				_particleAnimationNode = new ParticleInitialColorNode(ParticlePropertiesMode.LOCAL_STATIC, _colorValue.usesMultiplier, _colorValue.usesOffset);
-				_setters.push(_colorValue.setter);
+				_setters[_setters.length] = _colorValue.setter;
 			}
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleInitialColorNodeSubParser;
 		}

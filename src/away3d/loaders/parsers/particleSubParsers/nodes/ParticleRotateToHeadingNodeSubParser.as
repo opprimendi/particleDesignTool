@@ -12,7 +12,7 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 		}
 		
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleRotateToHeadingNodeSubParser;
 		}

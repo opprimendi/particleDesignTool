@@ -18,7 +18,7 @@ package away3d.loaders.parsers.particleSubParsers.utils
 		private var _resolved:Boolean;
 		private var _hasLoaded:Boolean;
 		private var _originalUrl:String;
-		public function SingleResourceDependency(id:String, req:URLRequest, data:*, parentParser:CompositeParserBase, retrieveAsRawData:Boolean = false, suppressAssetEvents:Boolean = false)
+		public function SingleResourceDependency(id:String, req:URLRequest, data:Object, parentParser:CompositeParserBase, retrieveAsRawData:Boolean = false, suppressAssetEvents:Boolean = false)
 		{
 			_originalUrl=req.url;
 			var loadedAssets:Vector.<IAsset> = parentParser.root.getAssets(req.url);
@@ -33,7 +33,7 @@ package away3d.loaders.parsers.particleSubParsers.utils
 			{
 				trace("shared resource");
 				for each(var asset:IAsset in loadedAssets)
-					assets.push(asset);
+					assets[assets.length] = asset;
 			}
 		}
 		
@@ -42,7 +42,7 @@ package away3d.loaders.parsers.particleSubParsers.utils
 			if (!_resolved)
 			{
 				if(!_hasLoaded)
-					CompositeParserBase(parentParser).root.addAssets(_originalUrl,assets);
+					(parentParser as CompositeParserBase).root.addAssets(_originalUrl,assets);
 				_resolved = true;
 				super.resolve();
 			}

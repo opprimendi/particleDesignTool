@@ -31,7 +31,7 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.oneD
 				prop[_propName] = 0;
 		}
 		
-		override public function generateOneValue(index:int = 0, total:int = 1):*
+		override public function generateOneValue(index:int = 0, total:int = 1):Object
 		{
 			if (_luaState && _varName)
 			{

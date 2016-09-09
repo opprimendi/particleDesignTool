@@ -11,8 +11,8 @@ package away3d.loaders.parsers.particleSubParsers
 		{
 			if (!enable)
 			{
-				AllSubParsers.ALL_GLOBAL_VALUES.push(LuaGeneratorSubParser);
-				AllSubParsers.ALL_ONED_VALUES.push(LuaExtractSubParser);
+				AllSubParsers.ALL_GLOBAL_VALUES[ALL_GLOBAL_VALUES.length] = LuaGeneratorSubParser;
+				AllSubParsers.ALL_ONED_VALUES[ALL_ONED_VALUES.length] = LuaExtractSubParser;
 				enable = true;
 			}
 		}

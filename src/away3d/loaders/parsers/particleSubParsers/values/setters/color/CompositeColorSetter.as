@@ -36,17 +36,17 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.color
 			prop[_propName] = generateOneValue(prop.index, prop.total);
 		}
 		
-		override public function generateOneValue(index:int = 0, total:int = 1):*
+		override public function generateOneValue(index:int = 0, total:int = 1):Object
 		{
-			var rm:Number = _redMultiplierSetter ? _redMultiplierSetter.generateOneValue(index, total) : 0;
-			var gm:Number = _greenMultiplierSetter ? _greenMultiplierSetter.generateOneValue(index, total) : 0;
-			var bm:Number = _blueMultiplierSetter ? _blueMultiplierSetter.generateOneValue(index, total) : 0;
-			var am:Number = _alphaMultiplierSetter ? _alphaMultiplierSetter.generateOneValue(index, total) : 0;
+			var rm:Number = _redMultiplierSetter ? _redMultiplierSetter.generateOneValue(index, total) as Number : 0;
+			var gm:Number = _greenMultiplierSetter ? _greenMultiplierSetter.generateOneValue(index, total) as Number : 0;
+			var bm:Number = _blueMultiplierSetter ? _blueMultiplierSetter.generateOneValue(index, total) as Number : 0;
+			var am:Number = _alphaMultiplierSetter ? _alphaMultiplierSetter.generateOneValue(index, total) as Number : 0;
 			
-			var ro:Number = _redOffsetSetter ? _redOffsetSetter.generateOneValue(index, total) : 0;
-			var go:Number = _greenOffsetSetter ? _greenOffsetSetter.generateOneValue(index, total) : 0;
-			var bo:Number = _blueOffsetSetter ? _blueOffsetSetter.generateOneValue(index, total) : 0;
-			var ao:Number = _alphaOffsetSetter ? _alphaOffsetSetter.generateOneValue(index, total) : 0;
+			var ro:Number = _redOffsetSetter ? _redOffsetSetter.generateOneValue(index, total) as Number : 0;
+			var go:Number = _greenOffsetSetter ? _greenOffsetSetter.generateOneValue(index, total) as Number : 0;
+			var bo:Number = _blueOffsetSetter ? _blueOffsetSetter.generateOneValue(index, total) as Number : 0;
+			var ao:Number = _alphaOffsetSetter ? _alphaOffsetSetter.generateOneValue(index, total) as Number : 0;
 			return new ColorTransform(rm, gm, bm, am, ro, go, bo, ao);
 		}
 		

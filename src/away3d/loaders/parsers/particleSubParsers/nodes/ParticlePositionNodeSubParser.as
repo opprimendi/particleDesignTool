@@ -6,6 +6,7 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 	import away3d.loaders.parsers.particleSubParsers.AllSubParsers;
 	import away3d.loaders.parsers.particleSubParsers.utils.MatchingTool;
 	import away3d.loaders.parsers.particleSubParsers.values.ValueSubParserBase;
+	import flash.geom.Vector3D;
 	
 	public class ParticlePositionNodeSubParser extends ParticleNodeSubParserBase
 	{
@@ -46,16 +47,16 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 		{
 			if (_positionValue.valueType == ValueSubParserBase.CONST_VALUE)
 			{
-				_particleAnimationNode = new ParticlePositionNode(ParticlePropertiesMode.GLOBAL, _positionValue.setter.generateOneValue());
+				_particleAnimationNode = new ParticlePositionNode(ParticlePropertiesMode.GLOBAL, _positionValue.setter.generateOneValue() as Vector3D);
 			}
 			else
 			{
 				_particleAnimationNode = new ParticlePositionNode(ParticlePropertiesMode.LOCAL_STATIC);
-				_setters.push(_positionValue.setter);
+				_setters[_setters.length] = _positionValue.setter;
 			}
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticlePositionNodeSubParser;
 		}

@@ -43,15 +43,15 @@ package away3d.loaders.parsers
 			_children ||= new Vector.<CompositeParserBase>;
 			if (_children.indexOf(subParser) != -1)
 				throw(new Error("Duplicated add"));
-			_children.push(subParser);
+			_children[_children.length] = subParser;
 			subParser.root = _root;
 		}
 		
-		override public function parseAsync(data:*, frameLimit:Number = 15):void
+		override public function parseAsync(data:Object, frameLimit:Number = 15):void
 		{
 			if (data is String || data is ByteArray)
 			{
-				data = JSON.parse(data);
+				data = JSON.parse(data.toString());
 			}
 			_numProcessed = 0;
 			_isFirstParsing = true;
@@ -98,9 +98,9 @@ package away3d.loaders.parsers
 		}
 		
 		
-		override protected function addDependency(id:String, req:URLRequest, retrieveAsRawData:Boolean = false, data:* = null, suppressErrorEvents:Boolean = false):void
+		override protected function addDependency(id:String, req:URLRequest, retrieveAsRawData:Boolean = false, data:Object = null, suppressErrorEvents:Boolean = false):void
 		{
-			_root.dependencies.push(new SingleResourceDependency(id, req, data, this, retrieveAsRawData, suppressErrorEvents));
+			_root.dependencies[_root.dependencies.length] = new SingleResourceDependency(id, req, data, this, retrieveAsRawData, suppressErrorEvents);
 		}
 		
 		override protected function finalizeAsset(asset:IAsset, name:String = null):void

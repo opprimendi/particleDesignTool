@@ -12,6 +12,8 @@ package away3d.loaders.parsers.particleSubParsers.geometries
 	import away3d.loaders.parsers.particleSubParsers.values.setters.SetterBase;
 	import away3d.tools.helpers.ParticleGeometryHelper;
 	import away3d.tools.helpers.data.ParticleGeometryTransform;
+	import flash.geom.Matrix;
+	import flash.geom.Matrix3D;
 	
 	use namespace arcane;
 	
@@ -103,9 +105,9 @@ package away3d.loaders.parsers.particleSubParsers.geometries
 				{
 					_geometryTransform = new ParticleGeometryTransform();
 					if (vertexSetter)
-						_geometryTransform.vertexTransform = vertexSetter.generateOneValue(i, _numParticles);
+						_geometryTransform.vertexTransform = vertexSetter.generateOneValue(i, _numParticles) as Matrix3D;
 					if (uvSetter)
-						_geometryTransform.UVTransform = uvSetter.generateOneValue(i, _numParticles);
+						_geometryTransform.UVTransform = uvSetter.generateOneValue(i, _numParticles) as Matrix;
 					transforms[i] = _geometryTransform;
 				}
 			}
@@ -117,7 +119,7 @@ package away3d.loaders.parsers.particleSubParsers.geometries
 			return _particleGeometry;
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.SingleGeometrySubParser;
 		}

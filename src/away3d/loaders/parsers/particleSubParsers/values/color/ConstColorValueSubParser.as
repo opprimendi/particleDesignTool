@@ -13,7 +13,7 @@ package away3d.loaders.parsers.particleSubParsers.values.color
 			super(propName, CONST_VALUE);
 		}
 		
-		override public function parseAsync(data:*, frameLimit:Number = 30):void
+		override public function parseAsync(data:Object, frameLimit:Number = 30):void
 		{
 			super.parseAsync(data, frameLimit);
 			_setter = new ConstColorSetter(_propName, extractColor(data));
@@ -41,7 +41,7 @@ package away3d.loaders.parsers.particleSubParsers.values.color
 			return color;
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ConstColorValueSubParser;
 		}

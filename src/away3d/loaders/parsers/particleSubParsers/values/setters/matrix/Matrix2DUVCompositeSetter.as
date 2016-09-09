@@ -24,11 +24,11 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.matrix
 			prop[_propName] = generateOneValue(prop.index, prop.total);
 		}
 		
-		override public function generateOneValue(index:int = 0, total:int = 1):*
+		override public function generateOneValue(index:int = 0, total:int = 1):Object
 		{
-			var matrix:Matrix = new Matrix;
+			var matrix:Matrix = new Matrix();
 			matrix.scale(1 / _numColumns, 1 / _numRows);
-			var selectedIndex:int = _selectedValue.generateOneValue(index, total) % (_numColumns * _numRows);
+			var selectedIndex:int = (_selectedValue.generateOneValue(index, total) as Number) % (_numColumns * _numRows);
 			//index %= _numColumns * _numRows;
 			var row:int = selectedIndex / _numColumns;
 			var column:int = selectedIndex % _numColumns;

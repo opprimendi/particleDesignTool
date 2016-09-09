@@ -18,7 +18,7 @@ package away3d.loaders.parsers.particleSubParsers.materials
 		
 		}
 		
-		override public function parseAsync(data:*, frameLimit:Number = 30):void
+		override public function parseAsync(data:Object, frameLimit:Number = 30):void
 		{
 			super.parseAsync(data, frameLimit);
 		
@@ -49,7 +49,7 @@ package away3d.loaders.parsers.particleSubParsers.materials
 			return _colorMaterial;
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ColorMaterialSubParser;
 		}

@@ -29,13 +29,13 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.property
 			prop[_propName] = generateOneValue(prop.index, prop.total);
 		}
 		
-		override public function generateOneValue(index:int = 0, total:int = 1):*
+		override public function generateOneValue(index:int = 0, total:int = 1):Object
 		{
-			var position:Vector3D = _positionSetter ? _positionSetter.generateOneValue(index, total) : null;
-			var rotation:Vector3D = _rotationSetter ? _rotationSetter.generateOneValue(index, total) : null;
-			var scale:Vector3D = _scaleSetter ? _scaleSetter.generateOneValue(index, total) : null;
-			var timeOffset:Number = _timeOffsetSetter ? _timeOffsetSetter.generateOneValue(index, total) : 0;
-			var playSpeed:Number = _playSpeedSetter ? _playSpeedSetter.generateOneValue(index, total) : 1;
+			var position:Vector3D = _positionSetter ? _positionSetter.generateOneValue(index, total) as Vector3D : null;
+			var rotation:Vector3D = _rotationSetter ? _rotationSetter.generateOneValue(index, total) as Vector3D : null;
+			var scale:Vector3D = _scaleSetter ? _scaleSetter.generateOneValue(index, total) as Vector3D : null;
+			var timeOffset:Number = _timeOffsetSetter ? _timeOffsetSetter.generateOneValue(index, total) as Number : 0;
+			var playSpeed:Number = _playSpeedSetter ? _playSpeedSetter.generateOneValue(index, total) as Number : 1;
 			return new ParticleInstanceProperty(position, rotation, scale, timeOffset, playSpeed);
 		}
 		

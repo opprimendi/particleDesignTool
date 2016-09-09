@@ -198,7 +198,7 @@ package away3d.loaders.parsers.particleSubParsers.values.color
 			_setter = new CompositeColorSetter(_propName, _redMultiplierSetter, _greenMultiplierSetter, _blueMultiplierSetter, _alphaMultiplierSetter, _redOffsetSetter, _greenOffsetSetter, _blueOffsetSetter, _alphaOffsetSetter);
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.CompositeColorValueSubParser;
 		}

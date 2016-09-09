@@ -81,7 +81,7 @@ package away3d.loaders.parsers.particleSubParsers.materials
 			return _texture;
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.TextureMaterialSubParser;
 		}

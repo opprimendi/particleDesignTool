@@ -117,7 +117,7 @@ package away3d.loaders.parsers.particleSubParsers.values.fourD
 			_setter = new FourDCompositeWithOneDSetter(_propName, setterX, setterY, setterZ, setterW);
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.FourDCompositeWithOneDValueSubParser;
 		}

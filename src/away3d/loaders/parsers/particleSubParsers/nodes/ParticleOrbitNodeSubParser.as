@@ -65,20 +65,20 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 		
 		private function initProps():void
 		{
-			var eulers:Vector3D = _usesEulers ? _eulersValue.setter.generateOneValue() : null;
+			var eulers:Vector3D = _usesEulers ? _eulersValue.setter.generateOneValue() as Vector3D : null;
 			if (_orbitValue.valueType == ValueSubParserBase.CONST_VALUE)
 			{
-				var orbit:Vector3D = _orbitValue.setter.generateOneValue();
+				var orbit:Vector3D = _orbitValue.setter.generateOneValue() as Vector3D;
 				_particleAnimationNode = new ParticleOrbitNode(ParticlePropertiesMode.GLOBAL, _usesEulers, _usesCycle, _usesPhase, orbit.x, orbit.y, orbit.z, eulers);
 			}
 			else
 			{
 				_particleAnimationNode = new ParticleOrbitNode(ParticlePropertiesMode.LOCAL_STATIC, _usesEulers, _usesCycle, _usesPhase, 100, 1, 0, eulers);
-				_setters.push(_orbitValue.setter);
+				_setters[_setters.length] = _orbitValue.setter;
 			}
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleOrbitNodeSubParser;
 		}

@@ -53,17 +53,17 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 		{
 			if (_scaleValue.valueType == ValueSubParserBase.CONST_VALUE)
 			{
-				var scale:Vector3D = _scaleValue.setter.generateOneValue();
+				var scale:Vector3D = _scaleValue.setter.generateOneValue() as Vector3D;
 				_particleAnimationNode = new ParticleScaleNode(ParticlePropertiesMode.GLOBAL, _usesCycle, _usesPhase, scale.x, scale.y, scale.z, scale.w);
 			}
 			else
 			{
 				_particleAnimationNode = new ParticleScaleNode(ParticlePropertiesMode.LOCAL_STATIC, _usesCycle, _usesPhase);
-				_setters.push(_scaleValue.setter);
+				_setters[_setters.length] = _scaleValue.setter;
 			}
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleScaleNodeSubParser;
 		}

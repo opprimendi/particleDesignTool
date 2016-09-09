@@ -66,33 +66,33 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 			if (_cycleValue.valueType == ValueSubParserBase.CONST_VALUE)
 			{
 				if (!_scaleValue)
-					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.GLOBAL, _cycleValue.setter.generateOneValue(), 1, _axis, _formula);
+					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.GLOBAL, _cycleValue.setter.generateOneValue() as Number, 1, _axis, _formula);
 				else if (_scaleValue.valueType == ValueSubParserBase.CONST_VALUE)
-					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.GLOBAL, _cycleValue.setter.generateOneValue(), _scaleValue.setter.generateOneValue(), _axis, _formula);
+					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.GLOBAL, _cycleValue.setter.generateOneValue() as Number, _scaleValue.setter.generateOneValue() as Number, _axis, _formula);
 				else
 				{
-					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.LOCAL_STATIC, _cycleValue.setter.generateOneValue(), 2, _axis, _formula);
-					_setters.push(_cycleValue.setter);
-					_setters.push(_scaleValue.setter);
+					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.LOCAL_STATIC, _cycleValue.setter.generateOneValue() as Number, 2, _axis, _formula);
+					_setters[_setters.length] = _cycleValue.setter;
+					_setters[_setters.length] = _scaleValue.setter;
 				}
 			}
 			else
 			{
-				_setters.push(_cycleValue.setter);
+				_setters[_setters.length] = _cycleValue.setter;
 				if (!_scaleValue)
-					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.LOCAL_STATIC, _cycleValue.setter.generateOneValue(), 1, _axis, _formula);
+					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.LOCAL_STATIC, _cycleValue.setter.generateOneValue() as Number, 1, _axis, _formula);
 				else if (_scaleValue.valueType == ValueSubParserBase.CONST_VALUE)
-					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.LOCAL_STATIC, _cycleValue.setter.generateOneValue(), _scaleValue.setter.generateOneValue(), _axis, _formula);
+					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.LOCAL_STATIC, _cycleValue.setter.generateOneValue() as Number, _scaleValue.setter.generateOneValue() as Number, _axis, _formula);
 				else
 				{
-					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.LOCAL_STATIC, _cycleValue.setter.generateOneValue(), 2, _axis, _formula);
-					_setters.push(_scaleValue.setter);
+					_particleAnimationNode = new ParticleUVNode(ParticlePropertiesMode.LOCAL_STATIC, _cycleValue.setter.generateOneValue() as Number, 2, _axis, _formula);
+					_setters[_setters.length] = _scaleValue.setter;
 				}
 				
 			}
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleUVNodeSubParser;
 		}

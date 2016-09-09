@@ -20,7 +20,7 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 			return super.proceedParsing()
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleFollowNodeSubParser;
 		}

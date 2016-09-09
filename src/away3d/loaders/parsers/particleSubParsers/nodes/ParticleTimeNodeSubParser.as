@@ -21,11 +21,11 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 		
 		private function initSetters():void
 		{
-			_setters.push(_startTimeValue.setter);
+			_setters[_setters.length] = _startTimeValue.setter;
 			if (usesDuration)
-				_setters.push(_durationValue.setter);
+				_setters[_setters.length] = _durationValue.setter;
 			if (usesDelay)
-				_setters.push(_delayValue.setter);
+				_setters[_setters.length] = _delayValue.setter;
 		}
 		
 		override protected function proceedParsing():Boolean
@@ -92,7 +92,7 @@ package away3d.loaders.parsers.particleSubParsers.nodes
 				return MORE_TO_PARSE;
 		}
 		
-		public static function get identifier():*
+		public static function get identifier():Object
 		{
 			return AllIdentifiers.ParticleTimeNodeSubParser;
 		}

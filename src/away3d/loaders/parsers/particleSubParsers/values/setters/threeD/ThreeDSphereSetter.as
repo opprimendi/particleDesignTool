@@ -28,7 +28,7 @@ package away3d.loaders.parsers.particleSubParsers.values.setters.threeD
 			prop[_propName] = generateOneValue(prop.index, prop.total);
 		}
 		
-		override public function generateOneValue(index:int = 0, total:int = 1):*
+		override public function generateOneValue(index:int = 0, total:int = 1):Object
 		{
 			var degree1:Number = Math.random() * Math.PI * 2;
 			
